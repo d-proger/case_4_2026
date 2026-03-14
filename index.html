@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PWA-приложение для ведения корпоративных заметок">
+  <meta name="theme-color" content="#2563eb">
+  <title>Корпоративные заметки</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/app-icon-192.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/app-icon-192.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- мобильная шапка -->
+  <header class="mobile-header">
+    <button class="btn-burger" id="btnBurger" aria-label="Меню">☰</button>
+    <h1>Корпоративные заметки</h1>
+  </header>
+
+  <div class="app-layout">
+    <!-- боковая панель -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="icons/app-icon-192.svg" alt="Лого">
+        <h1>Заметки</h1>
+      </div>
+
+      <nav>
+        <button class="sidebar-btn active" id="btnNewNote">
+          ➕ Новая заметка
+        </button>
+        <button class="sidebar-btn" id="btnAllNotes" onclick="App.showNotesList()">
+          📋 Все заметки
+        </button>
+      </nav>
+
+      <!-- переключатель хранилища -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Хранилище</div>
+        <div class="storage-switch">
+          <select id="storageToggle">
+            <option value="indexeddb">IndexedDB</option>
+            <option value="file">Файловое (localStorage)</option>
+          </select>
+        </div>
+        <div class="storage-indicator">Режим: <span id="storageIndicator">IndexedDB</span></div>
+
+        <!-- импорт/экспорт для файлового режима -->
+        <div class="file-controls" id="fileControls">
+          <button class="btn btn-secondary btn-sm" id="btnExport">📥 Экспорт JSON</button>
+          <button class="btn btn-secondary btn-sm" id="btnImport">📤 Импорт JSON</button>
+          <input type="file" id="importFile" accept=".json" style="display:none">
+        </div>
+      </div>
+    </aside>
+
+    <!-- основной контент -->
+    <main class="main-area" id="mainContent">
+      <!-- сюда рендерится контент -->
+    </main>
+  </div>
+
+  <!-- скрипты -->
+  <script src="js/storage-indexeddb.js"></script>
+  <script src="js/storage-file.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
